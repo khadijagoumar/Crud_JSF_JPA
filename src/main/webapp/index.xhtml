@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="utf-8" name="viewport"
+          content="width=device-width, initial-scale=1"/>
+    <title>Plantilla Basica JSF</title>
+    <f:loadBundle basename="i18n.msg" var="message"/>
+</h:head>
+<h:body>
+    <h2>
+        <h:outputText value="#{message.Lista_Clientes}"/>
+        <h:outputStylesheet library="webjars" name = "bootstrap/5.3.3/css/bootstrap.min.css"  />
+    </h2>
+    <h:form>
+        <h:commandButton action="#{clienteBean.nuevo()}" value="Nuevo Cliente"/>
+
+        <h:dataTable value="#{clienteBean.obtenerClientes()}" var="cliente"
+                     class="table table-striped">
+            <h:column>
+                <f:facet name="header"><h:outputText value="#{message.id}"/></f:facet>
+                #{cliente.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="#{message.nombres}"/></f:facet>
+              #{cliente.nombres}
+            </h:column>
+            <h:column>
+                <f:facet name="header"> <h:outputText value="#{message.apellidos}"/></f:facet>
+               #{cliente.apellidos}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="#{message.direccion}"/></f:facet>
+                #{cliente.direccion}
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="#{message.email}"/></f:facet>
+             #{cliente.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header"> <h:outputText value="#{message.telefono}"/></f:facet>
+               #{cliente.telefono}
+            </h:column>
+            <h:column>
+                <f:facet name="header"> <h:outputText value="#{message.fregistro}"/></f:facet>
+               #{cliente.fregistro}
+            </h:column>
+
+            <h:column>
+               <h:commandButton action="#{clienteBean.editar(cliente.id)}" value="#{message.Editar}"/>
+
+            </h:column>
+            <h:column>
+
+                <h:commandButton action="#{clienteBean.eliminar(cliente.id)}" value="#{message.Eliminar}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
